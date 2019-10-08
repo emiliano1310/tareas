@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>T E S T</title>
+<script>
+function resultado() {
+var p1, p2, p3, p4, nota;
+ 
+<!-- 1ª pregunta -->
+if (document.getElementById('p11').checked==true) {p1=1}
+else {p1=0}
+<!-- 2ª pregunta -->
+if (document.getElementById('p22').checked==true) {p2=1}
+else {p2=0}
+<!-- 3ª pregunta -->
+if (document.getElementById('p33').checked==true) {p3=1}
+else {p3=0}
+<!-- 4ª pregunta -->
+if (document.getElementById('p44').checked==true) {p4=1}
+else {p4=0}
+ 
+nota=p1+p2+p3+p4;
+alert(" Aciertos: " + nota);
+location.reload();
+}
+</script>
+</head>
+<body>
+<h2>T E S T</h2>
+<hr>
+<form style="font:normal 16px sans-serif">
+<p>Palabras que llevan acento en la última sílaba</p>
+<p onclick="this.style.color='#00FF00'"><input type="texto" name="pregunta1" id="p11"> Texto de la respuesta A.</p>
+
+ 
+<p>Palabras que llevan acento en la última sílaba</p>
+<p onclick="this.style.color='#FF0000'"><input type="Texto" name="pregunta2" id="p21"> Texto de la respuesta A.</p>
+
+ 
+<p>Palabras que llevan acento en la última sílaba</p>
+<p onclick="this.style.color='#FF0000'"><input type="texto" name="pregunta3" id="p31"> Texto de la respuesta A.</p>
+
+ 
+<p>¿Como se llaman las palabras que se pueden leer de derecha a izquierda y de izquierda a derecha?</p>
+<p onclick="this.style.color='#FF0000'"><input type="texto" name="pregunta4" id="p41"> Texto de la respuesta A.</p>
+
+<hr>
+<p><input type="button" value=" R E S U L T A D O " onclick="resultado()"/></p>
+</form>
+</body>
+</html>
