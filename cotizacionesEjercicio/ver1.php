@@ -39,7 +39,7 @@
                     
                         
                         <?php while ($f = $res->fetch_array()) { ?>
-                            <option value="<?php echo $f['marca_nombre']?>"><?php echo $f['marca_nombre']?></option>
+                            <option value="<?php echo $f['marca_id']?>"><?php echo $f['marca_nombre']?></option>
                        
                             <?php
 
