@@ -41,17 +41,13 @@
                     <th>NOMBRE MARCA</th>
                     </tfoot>
                     <tbody>
-                        
                         <?php while ($f = $res->fetch_assoc()) { ?>
                             <tr>
                                 <td><?php echo $f['marca_id'] ?></td>
                                 <td><?php echo $f['marca_nombre'] ?></td>
                             </tr>
-                       
                             <?php
-
                         }
-                        
                         $sel->close();
                         $con->close();
                         ?>
