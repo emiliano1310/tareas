@@ -11,45 +11,55 @@
         ?>
     </head>
     <body>
-
         <!--código que incluye el menú responsivo-->
         <?php include'inc/incluye_menu.php' ?>
         <!--termina código que incluye el menú responsivo-->
         <div class="container">
             <div class="jumbotron">
-                <h1>Consulta Marcas</h1>
                 <?php
                 //Consulta sin parámetros
-                $sel = $con->prepare("SELECT *from marca");
+                $sel = $con->prepare("SELECT *from refaccion_proveedor");
 
-                /* consulta con parametros
-                  $sel = $con->prepare("SELECT *from marca WHERE marca_id<=?");
-                  $parametro = 50;
-                  $sel->bind_param('i', $parametro);
-                  finaliza consulta con parámetros */
 
                 $sel->execute();
                 $res = $sel->get_result();
                 $row = mysqli_num_rows($res);
                 ?>
+
+
+
                 Elementos devueltos por la consulta: <?php echo $row ?>
                 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                    
-                    <select name="">
-                    
-                        
-                        <?php while ($f = $res->fetch_array()) { ?>
-                            <option value="<?php echo $f['marca_nombre']?>"><?php echo $f['marca_nombre']?></option>
-                       
+                    <thead>
+                    <th>ID REFACCION PROVEEDOR</th>
+                    <th>ID REFACCION</th>
+                    <th>ID PROVEEDOR</th>
+                    <th>FECHA SOLICITUD</th>
+                    <th>PRECIO</th>
+                    </thead>
+                    <tfoot>
+                    <th>ID REFACCION PROVEEDOR</th>
+                    <th>ID REFACCION</th>
+                    <th>ID PROVEEDOR</th>
+                    <th>FECHA SOLICITUD</th>
+                    <th>PRECIO</th>
+                    </tfoot>
+                    <tbody>
+                        <?php while ($f = $res->fetch_assoc()) { ?>
+                            <tr>
+                                <td><?php echo $f['refaccion_proveedor_id'] ?></td>
+                                <td><?php echo $f['id_refaccion'] ?></td>
+                                <td><?php echo $f['id_proveedor'] ?></td>
+                                <td><?php echo $f['fecha_solicitud'] ?></td>
+                                <td><?php echo $f['precio'] ?></td>
+                            </tr>
                             <?php
-
                         }
                         
                         $sel->close();
                         $con->close();
                         ?>
-                    
-                        </select>
+                    <tbody>
                 </table>
             </div>
         </div>

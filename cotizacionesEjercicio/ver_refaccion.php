@@ -18,13 +18,8 @@
             <div class="jumbotron">
                 <?php
                 //Consulta sin parámetros
-                $sel = $con->prepare("SELECT *from marca");
+                $sel = $con->prepare("SELECT *from refaccion");
 
-                /* consulta con parametros
-                  $sel = $con->prepare("SELECT *from marca WHERE marca_id<=?");
-                  $parametro = 50;
-                  $sel->bind_param('i', $parametro);
-                  finaliza consulta con parámetros */
 
                 $sel->execute();
                 $res = $sel->get_result();
@@ -32,54 +27,46 @@
                 ?>
 
 
-                <?php
-
-                $hostname = "localhost";
-                $username = "root";
-                $password = "";
-                $databaseName = "tallerbd";
-
-                $connect = mysqli_connect($hostname, $username, $password, $databaseName);
-
-                
-                $query = "SELECT * FROM `marca`";
-                $result2 = mysqli_query($connect, $query);
-
-                $options = "";
-
-                while($row2 = mysqli_fetch_array($result2))
-                {
-                    $options = $options."<option value='$row2[0]'>$row2[1]</option>";
-                }
-                ?>
-
-                <h3>Seleccione la marca que desea de la lista o busquela en la tabla de la parte inferior</h3>
-                <select>
-                <?php echo $options;?>
-                </select>
-                <br>
-
-
 
                 Elementos devueltos por la consulta: <?php echo $row ?>
                 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
+                    <th>ID REFACCION</th>
                     <th>ID MARCA</th>
-                    <th>NOMBRE MARCA</th>
+                    <th>REFACCION NOMBRE</th>
+                    <th>REFACCION DESCRIPCION</th>
+                    <th>IMAGEN</th>
+                    <th>VISUALIZAR</th>
+                    <th>EDITAR</th>
+                    <th>ELIMINAR</th>
                     </thead>
                     <tfoot>
+                    <th>ID REFACCION</th>
                     <th>ID MARCA</th>
-                    <th>NOMBRE MARCA</th>
+                    <th>REFACCION NOMBRE</th>
+                    <th>REFACCION DESCRIPCION</th>
+                    <th>IMAGEN</th>
+                    <th>VISUALIZAR</th>
+                    <th>EDITAR</th>
+                    <th>ELIMINAR</th>
                     </tfoot>
                     <tbody>
                         <?php while ($f = $res->fetch_assoc()) { ?>
                             <tr>
+                                <td><?php echo $f['refaccion_id'] ?></td>
                                 <td><?php echo $f['marca_id'] ?></td>
-                                <td><?php echo $f['marca_nombre'] ?></td>
+                                <td><?php echo $f['refaccion_nombre'] ?></td>
+                                <td><?php echo $f['refaccion_descripcion'] ?></td>
+                                <td><img src="<?php echo $f['refaccion_imagen'] ?>" class="img-thumbnail img-fluid" > </td>
+
+                                <td><a href="sucursal_visualizar.php?id_sucursal=<?php echo $f['sucursal_id'] ?>"><span class="glyphicon glyphicon-edit"> </span> Ver</a></td>
+
+                                <td><a href="sucursal_editar.php?id_sucursal=<?php echo $f['sucursal_id'] ?>"><span class="glyphicon glyphicon-edit"> </span> Editar</a></td>
+                                <td><a href="refaccion_eliminar.php?id_sucursal=<?php echo $f['refaccion_id'] ?>"><span class="glyphicon glyphicon-trash"></span> Eliminar</a></td>
                             </tr>
-                            <?php
+
+                            <?php   
                         }
-                        
                         $sel->close();
                         $con->close();
                         ?>
@@ -91,5 +78,4 @@
         include 'inc/incluye_datatable_pie.php';
         ?>
     </body>
-</html>
-
+    </html>

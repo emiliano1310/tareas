@@ -1,14 +1,15 @@
+<!– PARA EJEMPLO DASC — >
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Seleccionar una Marca para agregar nueva Refacci&oacute;n</title>
+        <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--código que incluye Bootstrap-->
         <?php
         include'inc/incluye_bootstrap.php';
-        include 'inc/conexion.php';
         include 'inc/incluye_datatable_head.php';
+        include 'inc/conexion.php';
         ?>
 
     </head>
@@ -18,37 +19,44 @@
         <!--termina código que incluye el menú responsivo-->
         <div class="container">
             <div class="jumbotron">
+                <h2>Selecciona una refaccion para agregarle un nuevo precio</h2>
                 <?php
-                $sel = $con->prepare("SELECT *from marca");
+                $sel = $con->prepare("SELECT *from refaccion");
                 $sel->execute();
                 $res = $sel->get_result();
                 ?>
-                <div class="h2">
-                    Agregar Refacciones
-                </div>
-                <div class="h3">
-                    Para utilizar una refacción en las cotizaciones, primero se debe a&ntilde;adir a la base de datos
-                </div>
-                <div class="h4">
-                    1.- Selecciona la marca de la refacci&oacute;n
-                </div>
                 <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
-                    <th>ID MARCA</th>
-                    <th>NOMBRE MARCA</th>
+                    <th>Id Refaccion</th>
+                    <th>Marca</th>
+                    <th>Nombre de la refaccion</th>
+                    <th>Descripcion de la refaccion</th>
+                    <th>Clic para seleccionar</th>
                     </thead>
                     <tfoot>
-                    <th>ID MARCA</th>
-                    <th>NOMBRE MARCA</th>
+                    <th>Id Refaccion</th>
+                    <th>Marca</th>
+                    <th>Nombre de la refaccion</th>
+                    <th>Descripcion de la refaccion</th>
+                    <th>Clic para seleccionar</th>
                     </tfoot>
                     <tbody>
                         <?php while ($f = $res->fetch_assoc()) { ?>
                             <tr>
                                 <td>
+                                    <?php echo $f['refaccion_id'] ?>
+                                </td>
+                                <td>
                                     <?php echo $f['marca_id'] ?>
                                 </td>
                                 <td>
-                                    <a href="refacciones_agregar.php?marca_id=<?php echo $f['marca_id']?>&marca_nombre=<?php echo $f['marca_nombre'] ?>"><?php echo $f['marca_nombre'] ?></a>
+                                    <?php echo $f['refaccion_nombre'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $f['refaccion_descripcion'] ?>
+                                </td>
+                                <td>
+                                    <a href="refacciones_cotizar.php?refaccion_id=<?php echo $f['refaccion_id'] ?>&refaccion_nombre=<?php echo $f['refaccion_nombre'] ?>">Seleccionar</a>
                                 </td>
                             </tr>
                             <?php
@@ -58,9 +66,9 @@
                         ?>
                     <tbody>
                 </table>
+
             </div>
         </div>
-        <?php include'inc/incluye_datatable_pie.php' ?>
+        <?php include'inc/incluye_datatable_pie.php'; ?>
     </body>
 </html>
-
