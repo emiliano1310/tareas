@@ -22,7 +22,7 @@ if (strnatcasecmp($tipo, "exito") == 0) {
 <script>
 $(document).ready(function () {
 swal({
-title: "Operación Exitosa",
+title: "Correcto",
 text: "<?php echo$operacion; ?>",
 type: "success"
 },
@@ -39,7 +39,7 @@ else {
 <script>
 $(document).ready(function () {
 swal({
-title: "Operación Erronea",
+title: "Error",
 text: "<?php echo$operacion; ?>",
 type: "error"
 },
